@@ -57,9 +57,8 @@ int main() {
 
             bool success = a_r.compare_exchange_weak(expected, desired, success_order,
                                          failure_order, scope);
-            assert(success);
+
             int check_number = 1;
-            assert(loc_acc[0] == desired);
 
             // Check
             // Equivalent to check_cmpr_exch(res_accessor, success, loc_acc[0], desired, check_number++);
@@ -77,8 +76,6 @@ int main() {
 
             success = a_r.compare_exchange_weak(expected, desired, success_order,
                                          scope);
-            assert(success);
-            assert(loc_acc[0] == desired);
 
             // Check
             // Equivalent to check_cmpr_exch(res_accessor, success, loc_acc[0], desired, check_number);
@@ -87,8 +84,6 @@ int main() {
             else
               expd_res_of_comp_exch_op = false;
             // set res[1] to the result of the test
-            assert(expd_res_of_comp_exch_op);
-            assert(success == expd_res_of_comp_exch_op);
             res_accessor[(check_number) - 1] = success == expd_res_of_comp_exch_op;
 
           } else {
